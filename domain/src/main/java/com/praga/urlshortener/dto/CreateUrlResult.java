@@ -9,7 +9,6 @@ public class CreateUrlResult {
 
     long snowflakeId;
     String shortCode;
-    String shortUrl;
     String originalUrl;
     String createdAt;
 

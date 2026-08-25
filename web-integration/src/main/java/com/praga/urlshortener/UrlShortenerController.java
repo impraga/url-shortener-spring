@@ -4,7 +4,7 @@ import com.praga.urlshortener.mapper.UrlMapper;
 import com.praga.urlshortener.model.ApiResponse;
 import com.praga.urlshortener.model.CreateUrlRequest;
 import com.praga.urlshortener.model.CreateUrlResponse;
-import com.praga.urlshortener.service.UrlShortenerShortenerService;
+import com.praga.urlshortener.service.UrlShortenerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,7 @@ import java.net.URI;
 @RequiredArgsConstructor
 public class UrlShortenerController implements UrlShortenerEndpoint {
 
-    private final UrlShortenerShortenerService urlShortenerService;
+    private final UrlShortenerService urlShortenerService;
     private final UrlMapper urlMapper;
 
     @Override

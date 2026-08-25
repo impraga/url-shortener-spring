@@ -1,11 +1,13 @@
 package com.praga.urlshortener.postgres;
 
 import com.praga.urlshortener.dto.CreateUrlResult;
+import com.praga.urlshortener.exception.UrlNotFoundException;
 import com.praga.urlshortener.postgres.mapper.UrlShortenerEntityMapper;
 import com.praga.urlshortener.repository.UrlRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.expression.ExpressionException;
 import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -27,6 +29,12 @@ public class UrlShortenerRepositoryAdapter implements UrlRepository {
     public CreateUrlResult findByShortCode(String shortCode) {
         return repository.findByShortCode(shortCode)
                 .map(mapper::toDomain)
-                .orElseThrow(() -> new ExpressionException(shortCode));
+                .orElseThrow(() -> new UrlNotFoundException(shortCode));
+    }
+
+    @Override
+    public Optional<CreateUrlResult> findByOriginalUrl(String originalUrl) {
+        return repository.findByOriginalUrl(originalUrl)
+                .map(mapper::toDomain);
     }
 }
